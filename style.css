@@ -1,0 +1,71 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        ". . . . i8 . . i4 ."
+        ". i1 . . i8 . . i4 ."
+        ". i1 . . . . . . ."
+        ". . . . . i5 . . ."
+        ". . . i6 . i5 . i3 ."
+        ". . . i6 . . . i3 ."
+        ". . . . . . . . ."
+        ". . i2 . . . i7 . ."
+        ". . i2 . . . i7 . ."; 
+    height: 100vh;
+    width: 100vw;
+}
+
+.i1 { grid-area: i1; 
+border: red solid 3px;
+color: white;
+font-weight: bold;
+}
+
+.i2 { grid-area: i2; 
+border: red solid 3px;
+color: white;
+font-weight: bold;
+}
+
+.i3 { grid-area: i3; 
+border: red solid 3px;
+color: white;
+font-weight: bold;
+}
+
+.i4 { grid-area: i4; 
+border: red solid 3px;
+color: white;
+font-weight: bold;
+}
+
+.i5 { grid-area: i5; 
+border: red solid 3px;
+color: white;
+font-weight: bold;
+}
+
+.i6 { grid-area: i6; 
+border: red solid 3px;
+color: white;
+font-weight: bold;
+}
+
+.i7 { grid-area: i7; 
+border: red solid 3px;
+color: white;
+font-weight: bold;
+}
+
+.i8 { grid-area: i8; 
+border: red solid 3px;
+color: white;
+font-weight: bold;
+}
