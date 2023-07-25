@@ -62,10 +62,12 @@ const pikmin =  {
 pikmin.render()
 
 function test() {
-    redPikmin++
-    yellowPikmin++
-    bluePikmin++
+    pikmin.redPikmin++
+    pikmin.yellowPikmin++
+    pikmin.bluePikmin++
+    pikmin.render()
 }
+test()
 
 //COUNTER FOR DAYS AND OTHER CONDITIONALS
 let dayCounter = 0
