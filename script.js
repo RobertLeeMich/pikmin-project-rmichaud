@@ -7,11 +7,6 @@ body.style.backgroundSize = "100vw"
 body.style.backgroundRepeat = "no-repeat"
 body.style.backgroundColor = "black"
 
-//RANDOMIZED IMAGES ARRAY
-const imageArr = ["image/armored-cannon-beetle.jpeg", "image/blue-1-pellet.png", "image/blue-5-pellet.png", "image/emperor-bulblax.jpeg","image/red-5-pellet.png", "image/red-1-pellet.png", "image/small-bulborb.png", "image/yellow-1-pellet.png", "image/yellow-5-pellet.png", "image/yellow-wollywog.png"]
-
-
-
 //SELECTORS
 const fireDiv = document.querySelector(".i1")
 const waterDiv = document.querySelector(".i2")
@@ -58,7 +53,7 @@ const pikmin =  {
     element: document.querySelector("#pikmin-numbers"),
     render : () => {
         pikmin.element.innerHTML = 
-        `<h3> Pikmin Totals:</h3> <span id ="red-pikmin">${pikmin.redPikmin}</span> <span id ="yellow-pikmin">${pikmin.yellowPikmin}</span> <span id ="blue-pikmin">${pikmin.bluePikmin}</span> <span>${totalPikmin}</span>`
+        `<h3> Pikmin Totals</h3> <span id ="red-pikmin">${pikmin.redPikmin}</span> <span id ="yellow-pikmin">${pikmin.yellowPikmin}</span> <span id ="blue-pikmin">${pikmin.bluePikmin}</span> <span>${totalPikmin}</span>`
     }
 }
 pikmin.render()
@@ -83,7 +78,7 @@ olimarsShip.addEventListener("click", (e) => {
         disableButton.style.display = "block"
         damagedShip.style.display = "none"
         repairedShip.style.display = "block"
-        //insert video & video button
+        //insert video & video button & play again button
     } else {
         outerModal.style.display = "block"
         img.src = "image/ssdolphinbroken.png"
@@ -93,9 +88,31 @@ olimarsShip.addEventListener("click", (e) => {
         disableButton.style.display = "block"
         damagedShip.style.display = "block"
         repairedShip.style.display = "none"
-        modal.insertAdjacentHTML("afterbegin", "<p class = \"olimar-ship-text\" >Olimar's Ship. He needs the Pikmin's help to repair it! Make sure to help him out by clicking the buttons around the map!</p>")
+        modal.insertAdjacentHTML("afterbegin", "<p class = \"olimar-ship-text\" >Olimar's Ship. He needs the Pikmins' help to repair it! Make sure to help him out by clicking the buttons around the map!</p>")
     }
 })
+
+//INSERT AND RANDOMIZE ARRAY IMAGES IN EACH DIV
+//Divs I'm working with:
+/*
+i1 i2 i4 i5 i6 i7 i8
+*/
+
+//RANDOMIZED IMAGES ARRAY
+const imageArr = ["image/armored-cannon-beetle.jpeg", "image/blue-1-pellet.png", "image/blue-5-pellet.png", "image/emperor-bulblax.jpeg","image/red-5-pellet.png", "image/red-1-pellet.png", "image/small-bulborb.png", "image/yellow-1-pellet.png", "image/yellow-5-pellet.png", "image/yellow-wollywog.png"] //length 10
+
+const divs = document.querySelectorAll("#internal-i1", "#internal-i2", "#internal-i4", "#i5", "#i6", "#i7", "#i8").forEach(div => {
+    const random = Math.floor(Math.random() * imageArr.length)
+    let img = new Image()
+    img.src = imageArr[random]
+    div.appendChild(img.src)
+})
+
+//if div has unique picture in it, skip and insert other picture
+//reference div with image in it for modal
+
+
+
 
 
 
