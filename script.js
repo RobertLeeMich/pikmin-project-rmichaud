@@ -16,7 +16,6 @@ const div4 = document.querySelector(".i5")
 const div6 = document.querySelector(".i6")
 const div7 = document.querySelector(".i7")
 const div8 = document.querySelector(".i8")
-const pikminNumbers = document.querySelector(".i9")
 const outerModal = document.querySelector(".i10")
 const disableButton = document.querySelector("#disabling-div")
 
@@ -30,8 +29,17 @@ const modal = document.getElementById("modal")
 outerModal.style.display = "none" //setting the modal to not display anything before a click
 let selectedPicItem = document.getElementById("selected-picture-item")
 
-//RANDOMIZING IMAGES SET-UP
+//RANDOM IMAGES ARRAY
 const imageArr = ["image/armored-cannon-beetle.jpeg", "image/blue-1-pellet.png", "image/blue-5-pellet.png", "image/emperor-bulblax.jpeg","image/red-5-pellet.png", "image/red-1-pellet.png", "image/small-bulborb.png", "image/yellow-1-pellet.png", "image/yellow-5-pellet.png", "image/yellow-wollywog.png"]
+
+//PIKMIN COUNTER/PIKMIN MANIPULATION
+const outerPikminNumbers = document.querySelector(".i9")
+const innerPikminNumbers = document.querySelector("#pikmin-numbers")
+let redPikmin = document.querySelector("#red-pikmin")
+let yellowPikmin = document.querySelector("#yellow-pikmin")
+let bluePikmin = document.querySelector("#blue-pikmin")
+let totalPikmin = 0;
+totalPikmin += redPikmin + yellowPikmin + bluePikmin
 
 //COUNTER FOR DAYS AND OTHER CONDITIONALS
 let dayCounter = 0
@@ -43,10 +51,12 @@ olimarsShip.addEventListener("click", (e) => {
     let img = new Image()
     img.src = "image/ssdolphinrepaired.png"
     img.style.width = "8em"
-    img.style.height = "15em"
+    img.style.height = "12.2em"
+
+    //OLIMARSSHIP REPAIRED/FIXED
     if (dayCounter === 6) {
         modal.appendChild(img)
-        modal.insertAdjacentHTML("beforeend", "<p>Congratulations! You've helped the Pikmin save Olimar and get him off of the planet and back home to his wife and kids! Press the button below to watch him blast off!</p>")
+        modal.insertAdjacentHTML("beforeend", "<p class = \"olimar-ship-text\" >Congratulations! You've helped the Pikmin save Olimar and get him off of the planet and back home to his wife and kids! Press the button below to watch him blast off!</p>")
         disableButton.style.display = "block"
         damagedShip.style.display = "none"
         repairedShip.style.display = "block"
@@ -55,16 +65,16 @@ olimarsShip.addEventListener("click", (e) => {
         outerModal.style.display = "block"
         img.src = "image/ssdolphinbroken.png"
         img.style.width = "8em"
-        img.style.height = "15em"
+        img.style.height = "12.1em"
         modal.appendChild(img)
         disableButton.style.display = "block"
         damagedShip.style.display = "block"
         repairedShip.style.display = "none"
-        modal.insertAdjacentHTML("afterbegin", "<p>Olimar's Ship. He needs the Pikmin's help to repair it! Make sure to help him out by clicking the buttons around the map!</p>")
+        modal.insertAdjacentHTML("afterbegin", "<p class = \"olimar-ship-text\" >Olimar's Ship. He needs the Pikmin's help to repair it! Make sure to help him out by clicking the buttons around the map!</p>")
     }
 })
 
-//CLOSE MODAL ON CLICK OUTSIDE OF MODAL EVENTLISTENER PART 2
+//CLOSE MODAL ON CLICK OUTSIDE OF MODAL EVENTLISTENER
 document.addEventListener("click", (e)=>{
 if (outerModal.style.display === "block"){
     outerModal.style.display = "none"
@@ -73,6 +83,28 @@ if (outerModal.style.display === "block"){
 }
 })
 
+//PIKMIN COUNTER ELEMENT POSITION/PIKMIN MANIPULATION
+const TotalNumPikmin =  {
+    redPikmin: 0,
+    yellowPikmin: 0,
+    bluePikmin: 0,
+    element: document.querySelector("#pikmin-numbers"),
+    render : () => {
+        TotalNumPikmin.element.innerHTML = 
+        `<h3> Total Number of Pikmin </h3> ${redPikmin} ${yellowPikmin} ${bluePikmin}`
+    }
+}
+
+function test() {
+    redPikmin++
+    yellowPikmin++
+    bluePikmin++
+}
+
+function updatePikmin() {
+    innerPikminNumbers.appendChild(TotalNumPikmin)
+    TotalNumPikmin.render()
+}
 
 
 
