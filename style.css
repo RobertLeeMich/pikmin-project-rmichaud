@@ -3,69 +3,127 @@
     margin: 0;
 }
 
+html {
+    font-size: 20px;
+}
+
+#modal{
+    border: red solid 3px;
+}
 .container {
     display: grid; 
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
-    gap: 0px 0px; 
+    grid-template-columns:repeat(9, 1fr); 
+    grid-template-rows:repeat(9, 1fr); 
     grid-template-areas: 
-        ". . . . i8 . . i4 ."
-        ". i1 . . i8 . . i4 ."
-        ". i1 . . . . . . ."
-        ". . . . . i5 . . ."
-        ". . . i6 . i5 . i3 ."
-        ". . . i6 . . . i3 ."
+        ". . . . . i5 . i9 i9"
+        "i1 . i8 . . i5 . i9 i9"
+        "i1 . i8 . . . . . ."
+        ". . . . . . . i4 i3"
+        ". . i6 . . . . i4 i3"
+        ". . i6 . . . . . ."
         ". . . . . . . . ."
-        ". . i2 . . . i7 . ."
-        ". . i2 . . . i7 . ."; 
+        ". i2 . . . . i7 . ."
+        ". i2 . . . . i7 . ."; 
     height: 100vh;
     width: 100vw;
 }
 
 .i1 { grid-area: i1; 
-border: red solid 3px;
-color: white;
-font-weight: bold;
+    border: red solid 3px;
+    color: white;
+    font-weight: bold;
 }
 
 .i2 { grid-area: i2; 
-border: red solid 3px;
-color: white;
-font-weight: bold;
+    border: red solid 3px;
+    color: white;
+    font-weight: bold;
 }
 
 .i3 { grid-area: i3; 
-border: red solid 3px;
-color: white;
-font-weight: bold;
+    color: white;
+    font-weight: bold;
 }
 
 .i4 { grid-area: i4; 
-border: red solid 3px;
-color: white;
-font-weight: bold;
+    border: red solid 3px;
+    color: white;
+    font-weight: bold;
 }
 
 .i5 { grid-area: i5; 
-border: red solid 3px;
-color: white;
-font-weight: bold;
+    border: red solid 3px;
+    color: white;
+    font-weight: bold;
 }
 
 .i6 { grid-area: i6; 
-border: red solid 3px;
-color: white;
-font-weight: bold;
+    border: red solid 3px;
+    color: white;
+    font-weight: bold;
 }
 
 .i7 { grid-area: i7; 
-border: red solid 3px;
-color: white;
-font-weight: bold;
+    border: red solid 3px;
+    color: white;
+    font-weight: bold;
 }
 
 .i8 { grid-area: i8; 
-border: red solid 3px;
-color: white;
-font-weight: bold;
+    border: red solid 3px;
+    color: white;
+    font-weight: bold;
 }
+
+.i9 {
+    grid-area: i9; 
+    display: flex;
+    border: red solid 3px;
+    color: white;
+    font-weight: bold;
+}
+
+.i10{
+    grid-area: i10;
+    color: white;
+    font-weight: bold;
+}
+
+
+.modal {
+    border: red solid 3px;
+    color: white;
+    font-weight: bold;
+}
+
+#pikmin-numbers {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    align-items: center;
+    border: solid lightblue 3px;
+    font-size: 1.3em;
+}
+
+#pikmin-numbers img{
+    width: 50%;
+    color: white;
+}
+
+#olimars-ship{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#damaged-ship {
+    width: 13em;
+    filter: brightness(50%);
+    /*Increase brightness with each part collected? Optional.*/
+}
+
+#repaired-ship {
+    width: 5em;
+}
+
+
