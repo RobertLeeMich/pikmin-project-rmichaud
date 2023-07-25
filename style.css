@@ -5,6 +5,7 @@
 
 html {
     font-size: 30px;
+    font-family: 'Concert One', cursive;
     font-family: 'Handjet', cursive;
 }
 
@@ -29,8 +30,8 @@ p .olimar-ship-text {
     grid-template-columns:repeat(9, 1fr); 
     grid-template-rows:repeat(9, 1fr); 
     grid-template-areas: 
-        ". . i8 . . i5 . i9 i9"
-        "i1 . i8 . . i5 . i9 i9"
+        ". . i8 . . i5 i9 i9 ."
+        "i1 . i8 . . i5 i9 i9 ."
         "i1 . . i10 i10 i10 i10 . ."
         ". . . i10 i10 i10 i10 i4 i3"
         ". . i6 i10 i10 i10 i10 i4 i3"
@@ -119,11 +120,13 @@ p .olimar-ship-text {
 #pikmin-numbers {
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
     border: solid lightblue 3px;
-    font-size: 1.3em;
+    font-size: 1.5em;
     color: white;
     letter-spacing: 0.5em;
+    font-family: Concert One;
 }
 
 #pikmin-numbers img {

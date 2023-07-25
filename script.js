@@ -1,14 +1,16 @@
 //Beginning of the Pikmin-Project
 const body = document.querySelector("body")
 
-//RANDOMIZED IMAGES ARRAY
-const imageArr = ["image/armored-cannon-beetle.jpeg", "image/blue-1-pellet.png", "image/blue-5-pellet.png", "image/emperor-bulblax.jpeg","image/red-5-pellet.png", "image/red-1-pellet.png", "image/small-bulborb.png", "image/yellow-1-pellet.png", "image/yellow-5-pellet.png", "image/yellow-wollywog.png"]
-
 //BACKGROUND STYLING
 body.style.backgroundImage = "url(image/thefinaltrialmap.png)"
 body.style.backgroundSize = "100vw"
 body.style.backgroundRepeat = "no-repeat"
 body.style.backgroundColor = "black"
+
+//RANDOMIZED IMAGES ARRAY
+const imageArr = ["image/armored-cannon-beetle.jpeg", "image/blue-1-pellet.png", "image/blue-5-pellet.png", "image/emperor-bulblax.jpeg","image/red-5-pellet.png", "image/red-1-pellet.png", "image/small-bulborb.png", "image/yellow-1-pellet.png", "image/yellow-5-pellet.png", "image/yellow-wollywog.png"]
+
+
 
 //SELECTORS
 const fireDiv = document.querySelector(".i1")
@@ -56,18 +58,11 @@ const pikmin =  {
     element: document.querySelector("#pikmin-numbers"),
     render : () => {
         pikmin.element.innerHTML = 
-        `<h3> Pikmin Totals:</h3> <span id ="red-pikmin">${pikmin.redPikmin}</span> <span id ="yellow-pikmin">${pikmin.yellowPikmin}</span> <span id ="blue-pikmin">${pikmin.bluePikmin}</span>`
+        `<h3> Pikmin Totals:</h3> <span id ="red-pikmin">${pikmin.redPikmin}</span> <span id ="yellow-pikmin">${pikmin.yellowPikmin}</span> <span id ="blue-pikmin">${pikmin.bluePikmin}</span> <span>${totalPikmin}</span>`
     }
 }
 pikmin.render()
 
-function test() {
-    pikmin.redPikmin++
-    pikmin.yellowPikmin++
-    pikmin.bluePikmin++
-    pikmin.render()
-}
-test()
 
 //COUNTER FOR DAYS AND OTHER CONDITIONALS
 let dayCounter = 0
