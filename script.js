@@ -43,36 +43,29 @@ document.addEventListener("click", (e)=>{
 //PIKMIN COUNTER/PIKMIN MANIPULATION
 const outerPikminNumbers = document.querySelector(".i9")
 const innerPikminNumbers = document.querySelector("#pikmin-numbers")
-let redPikmin = document.querySelector("#red-pikmin")
-let yellowPikmin = document.querySelector("#yellow-pikmin")
-let bluePikmin = document.querySelector("#blue-pikmin")
+let redPikmin = document.getElementById("#pikmin-numbers > #red-pikmin")
+let yellowPikmin = document.getElementById("#yellow-pikmin")
+let bluePikmin = document.getElementById("#blue-pikmin")
 let totalPikmin = 0;
 totalPikmin += redPikmin + yellowPikmin + bluePikmin 
 
-const TotalNumPikmin =  {
+const pikmin =  {
     redPikmin: 1,
     yellowPikmin: 0,
     bluePikmin: 0,
     element: document.querySelector("#pikmin-numbers"),
     render : () => {
-        TotalNumPikmin.element.innerHTML = 
-        `<h3> Total Number of Pikmin </h3> ${redPikmin} ${yellowPikmin} ${bluePikmin}`
+        pikmin.element.innerHTML = 
+        `<h3> Pikmin Totals:</h3> <span id ="red-pikmin">${pikmin.redPikmin}</span> <span id ="yellow-pikmin">${pikmin.yellowPikmin}</span> <span id ="blue-pikmin">${pikmin.bluePikmin}</span>`
     }
 }
+pikmin.render()
 
-// function test() {
-//     redPikmin++
-//     yellowPikmin++
-//     bluePikmin++
-// }
-
-// function updatePikmin() {
-    
-//     innerPikminNumbers.appendChild(TotalNumPikmin)
-//     TotalNumPikmin.render()
-//     test()
-// }
-// updatePikmin()
+function test() {
+    redPikmin++
+    yellowPikmin++
+    bluePikmin++
+}
 
 //COUNTER FOR DAYS AND OTHER CONDITIONALS
 let dayCounter = 0

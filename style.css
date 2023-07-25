@@ -131,12 +131,11 @@ p .olimar-ship-text {
     color: white;
 }
 
-p#red-pikmin {
+#red-pikmin {
     color: red;
-    padding: 0 0 0 0.3em;
 }
 
-p#yellow-pikmin {
+#yellow-pikmin {
     color: yellow;
 }
 
