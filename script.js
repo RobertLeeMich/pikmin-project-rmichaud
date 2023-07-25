@@ -18,6 +18,7 @@ const div7 = document.querySelector(".i7")
 const div8 = document.querySelector(".i8")
 const outerModal = document.querySelector(".i10")
 const disableButton = document.querySelector("#disabling-div")
+const allImageDivs = document.getElementsByClassName(".i1", "i2", "i3", "i4", )
 
 //SHIP MANIPULATION
 const damagedShip = document.getElementById("damaged-ship")
@@ -92,24 +93,26 @@ olimarsShip.addEventListener("click", (e) => {
     }
 })
 
-//INSERT AND RANDOMIZE ARRAY IMAGES IN EACH DIV
-//Divs I'm working with:
-/*
-i1 i2 i4 i5 i6 i7 i8
-*/
+//RANDOMIZED DIV IMAGES
+const imageArr = [
+    "image/armored-cannon-beetle.png", "image/blue-1-pellet.png", "image/blue-5-pellet.png", "image/emperor-bulblax.png","image/red-5-pellet.png", "image/red-1-pellet.png", "image/small-bulborb.png", "image/yellow-1-pellet.png", "image/yellow-5-pellet.png", "image/yellow-wollywog.png"
+] //LENGTH 10
 
-//RANDOMIZED IMAGES ARRAY
-const imageArr = ["image/armored-cannon-beetle.jpeg", "image/blue-1-pellet.png", "image/blue-5-pellet.png", "image/emperor-bulblax.jpeg","image/red-5-pellet.png", "image/red-1-pellet.png", "image/small-bulborb.png", "image/yellow-1-pellet.png", "image/yellow-5-pellet.png", "image/yellow-wollywog.png"] //length 10
-
-const divs = document.querySelectorAll("#internal-i1", "#internal-i2", "#internal-i4", "#i5", "#i6", "#i7", "#i8").forEach(div => {
+//CODE TO RANDOMIZE THE ELEMENTS AND ADD THEM TO EACH DIV
+const divs = document.querySelectorAll(".imgdiv").forEach(div => {
     const random = Math.floor(Math.random() * imageArr.length)
-    let img = new Image()
-    img.src = imageArr[random]
-    div.appendChild(img.src)
+    const imgTag = document.createElement(`img`)
+    imgTag.setAttribute("src", imageArr[random]) 
+    //imageArr[random] ends up returning a string because the array item is a string so it's a valid arg for setAttribute
+    imgTag.setAttribute("class", "div-image") 
+    div.appendChild(imgTag)
+    //CODE TO REMOVE AN ELEMENT SO IT'S NOT REPEATED ON A ROUND(DAY) IN ANOTHER DIV
+    imageArr.splice(random, 1)
 })
 
-//if div has unique picture in it, skip and insert other picture
 //reference div with image in it for modal
+//write logic for elemental divs
+//WRITE DAY LOGIC
 
 
 

@@ -177,4 +177,13 @@ p .olimar-ship-text {
     width: 3em;
 }
 
+.div-image {
+    width: 4em;
+}
+
+.imgdiv{
+    display: flex;
+    justify-content: center;
+}
+
 
