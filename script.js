@@ -1,6 +1,9 @@
 //Beginning of the Pikmin-Project
 const body = document.querySelector("body")
 
+//RANDOMIZED IMAGES ARRAY
+const imageArr = ["image/armored-cannon-beetle.jpeg", "image/blue-1-pellet.png", "image/blue-5-pellet.png", "image/emperor-bulblax.jpeg","image/red-5-pellet.png", "image/red-1-pellet.png", "image/small-bulborb.png", "image/yellow-1-pellet.png", "image/yellow-5-pellet.png", "image/yellow-wollywog.png"]
+
 //BACKGROUND STYLING
 body.style.backgroundImage = "url(image/thefinaltrialmap.png)"
 body.style.backgroundSize = "100vw"
@@ -29,8 +32,13 @@ const modal = document.getElementById("modal")
 outerModal.style.display = "none" //setting the modal to not display anything before a click
 let selectedPicItem = document.getElementById("selected-picture-item")
 
-//RANDOM IMAGES ARRAY
-const imageArr = ["image/armored-cannon-beetle.jpeg", "image/blue-1-pellet.png", "image/blue-5-pellet.png", "image/emperor-bulblax.jpeg","image/red-5-pellet.png", "image/red-1-pellet.png", "image/small-bulborb.png", "image/yellow-1-pellet.png", "image/yellow-5-pellet.png", "image/yellow-wollywog.png"]
+document.addEventListener("click", (e)=>{
+    if (outerModal.style.display === "block"){
+        outerModal.style.display = "none"
+        disableButton.style.display = "none"
+        modal.innerHTML = ""
+    }
+    })
 
 //PIKMIN COUNTER/PIKMIN MANIPULATION
 const outerPikminNumbers = document.querySelector(".i9")
@@ -39,7 +47,32 @@ let redPikmin = document.querySelector("#red-pikmin")
 let yellowPikmin = document.querySelector("#yellow-pikmin")
 let bluePikmin = document.querySelector("#blue-pikmin")
 let totalPikmin = 0;
-totalPikmin += redPikmin + yellowPikmin + bluePikmin
+totalPikmin += redPikmin + yellowPikmin + bluePikmin 
+
+const TotalNumPikmin =  {
+    redPikmin: 1,
+    yellowPikmin: 0,
+    bluePikmin: 0,
+    element: document.querySelector("#pikmin-numbers"),
+    render : () => {
+        TotalNumPikmin.element.innerHTML = 
+        `<h3> Total Number of Pikmin </h3> ${redPikmin} ${yellowPikmin} ${bluePikmin}`
+    }
+}
+
+// function test() {
+//     redPikmin++
+//     yellowPikmin++
+//     bluePikmin++
+// }
+
+// function updatePikmin() {
+    
+//     innerPikminNumbers.appendChild(TotalNumPikmin)
+//     TotalNumPikmin.render()
+//     test()
+// }
+// updatePikmin()
 
 //COUNTER FOR DAYS AND OTHER CONDITIONALS
 let dayCounter = 0
@@ -74,37 +107,9 @@ olimarsShip.addEventListener("click", (e) => {
     }
 })
 
-//CLOSE MODAL ON CLICK OUTSIDE OF MODAL EVENTLISTENER
-document.addEventListener("click", (e)=>{
-if (outerModal.style.display === "block"){
-    outerModal.style.display = "none"
-    disableButton.style.display = "none"
-    modal.innerHTML = ""
-}
-})
 
-//PIKMIN COUNTER ELEMENT POSITION/PIKMIN MANIPULATION
-const TotalNumPikmin =  {
-    redPikmin: 0,
-    yellowPikmin: 0,
-    bluePikmin: 0,
-    element: document.querySelector("#pikmin-numbers"),
-    render : () => {
-        TotalNumPikmin.element.innerHTML = 
-        `<h3> Total Number of Pikmin </h3> ${redPikmin} ${yellowPikmin} ${bluePikmin}`
-    }
-}
 
-function test() {
-    redPikmin++
-    yellowPikmin++
-    bluePikmin++
-}
 
-function updatePikmin() {
-    innerPikminNumbers.appendChild(TotalNumPikmin)
-    TotalNumPikmin.render()
-}
 
 
 
