@@ -41,9 +41,9 @@ document.addEventListener("click", (e)=>{
 //PIKMIN COUNTER/PIKMIN MANIPULATION
 const outerPikminNumbers = document.querySelector(".i9")
 const innerPikminNumbers = document.querySelector("#pikmin-numbers")
-let redPikmin = document.getElementById("#red-pikmin")
-let yellowPikmin = document.getElementById("#yellow-pikmin")
-let bluePikmin = document.getElementById("#blue-pikmin")
+let redPikmin = document.getElementById("red-pikmin")
+let yellowPikmin = document.getElementById("yellow-pikmin")
+let bluePikmin = document.getElementById("blue-pikmin")
 
 const pikmin =  {
     redPikmin: {
@@ -58,13 +58,13 @@ const pikmin =  {
         type: "water",
         numberOf: 0
     },
-    totalPikmin: {
-        numberOf: redPikmin.numberOf + yellowPikmin.numberOf + bluePikmin.numberOf
+    get totalPikmin() {
+        return this.redPikmin.numberOf + this.yellowPikmin.numberOf + this.bluePikmin.numberOf
     },
     element: document.querySelector("#pikmin-numbers"),
-    render : () => {
-        pikmin.element.innerHTML = 
-        `<h3> Pikmin Totals</h3> <span id ="red-pikmin">${pikmin.redPikmin.numberOf}</span> <span id ="yellow-pikmin">${pikmin.yellowPikmin}</span> <span id ="blue-pikmin">${pikmin.bluePikmin.numberOf}</span> <span>${totalPikmin.numberOf}</span>`
+    render : function() {
+        this.element.innerHTML = 
+        `<h3> Pikmin Totals</h3> <span id ="red-pikmin">${this.redPikmin.numberOf}</span> <span id ="yellow-pikmin">${this.yellowPikmin.numberOf}</span> <span id ="blue-pikmin">${this.bluePikmin.numberOf}</span> <span>${this.totalPikmin}</span>`
     }
 }
 pikmin.render()
