@@ -8,17 +8,17 @@ body.style.backgroundRepeat = "no-repeat"
 body.style.backgroundColor = "black"
 
 //SELECTORS
-const fireDiv = document.querySelector(".i1")
-const waterDiv = document.querySelector(".i2")
+const fire = document.querySelector(".fire")
+const electric = document.querySelector(".electric")
 const olimarsShip = document.querySelector(".i3")
-const electricDiv = document.querySelector(".i4")
+const water = document.querySelector(".water")
 const div4 = document.querySelector(".i5")
 const div6 = document.querySelector(".i6")
 const div7 = document.querySelector(".i7")
 const div8 = document.querySelector(".i8")
 const outerModal = document.querySelector(".i10")
 const disableButton = document.querySelector("#disabling-div")
-const allImageDivs = document.getElementsByClassName(".i1", "i2", "i3", "i4", )
+const allElements = document.querySelectorAll("fire", "electric", "water")
 
 //SHIP MANIPULATION
 const damagedShip = document.getElementById("damaged-ship")
@@ -41,24 +41,33 @@ document.addEventListener("click", (e)=>{
 //PIKMIN COUNTER/PIKMIN MANIPULATION
 const outerPikminNumbers = document.querySelector(".i9")
 const innerPikminNumbers = document.querySelector("#pikmin-numbers")
-let redPikmin = document.getElementById("#pikmin-numbers > #red-pikmin")
+let redPikmin = document.getElementById("#red-pikmin")
 let yellowPikmin = document.getElementById("#yellow-pikmin")
 let bluePikmin = document.getElementById("#blue-pikmin")
-let totalPikmin = 0;
-totalPikmin += redPikmin + yellowPikmin + bluePikmin 
 
 const pikmin =  {
-    redPikmin: 1,
-    yellowPikmin: 0,
-    bluePikmin: 0,
+    redPikmin: {
+        type: "fire",
+        numberOf: 1
+    },
+    yellowPikmin: {
+        type: "electric",
+        numberOf: 0
+    },
+    bluePikmin: {
+        type: "water",
+        numberOf: 0
+    },
+    totalPikmin: {
+        numberOf: redPikmin.numberOf + yellowPikmin.numberOf + bluePikmin.numberOf
+    },
     element: document.querySelector("#pikmin-numbers"),
     render : () => {
         pikmin.element.innerHTML = 
-        `<h3> Pikmin Totals</h3> <span id ="red-pikmin">${pikmin.redPikmin}</span> <span id ="yellow-pikmin">${pikmin.yellowPikmin}</span> <span id ="blue-pikmin">${pikmin.bluePikmin}</span> <span>${totalPikmin}</span>`
+        `<h3> Pikmin Totals</h3> <span id ="red-pikmin">${pikmin.redPikmin.numberOf}</span> <span id ="yellow-pikmin">${pikmin.yellowPikmin}</span> <span id ="blue-pikmin">${pikmin.bluePikmin.numberOf}</span> <span>${totalPikmin.numberOf}</span>`
     }
 }
 pikmin.render()
-
 
 //COUNTER FOR DAYS AND OTHER CONDITIONALS
 let dayCounter = 0
@@ -110,9 +119,107 @@ const divs = document.querySelectorAll(".imgdiv").forEach(div => {
     imageArr.splice(random, 1)
 })
 
+//PICTURE REQUIREMENT HANDLING CONDITIONS
+const imageRequirements = {
+    "image/armored-cannon-beetle.png": {
+        pikmin: 10
+    },
+    "image/blue-1-pellet.png": {
+        pikmin: 1
+    },
+    "image/blue-5-pellet.png": {
+        pikmin: 5
+    },
+    "image/emperor-bulblax.png": {
+        pikmin: 10
+    },
+    "image/red-1-pellet.png": {
+        pikmin: 1
+    },
+    "image/red-5-pellet.png": {
+        pikmin: 5
+    },
+    "image/small-bulborb.png": {
+        pikmin: 4
+    },
+    "image/yellow-1-pellet.png": {
+        pikmin: 1
+    },
+    "image/yellow-5-pellet.png": {
+        pikmin: 5
+    },
+    "image/yellow-wollywog.png": {
+        pikmin: 4
+    },
+}
+
+//ELEMENTAL DIV HANDLING
+allElements.forEach(element => {
+    element.addEventListener("click", () => {
+        if (element === "fire"){
+            divs.forEach(div => {
+                let img = div.querySelector('img')
+                if ('img'){
+                    const src = img.getAttribute("src")
+                    const requirements = imageRequirements[src]
+                    if (requirements){
+                        if (pikmin.yellowPikmin >= requirements.pikmin){
+                            //modal code here
+                        }
+                    }
+                }
+            })
+        } else if (element === "electric"){
+            divs.forEach(div => {
+                let img = div.querySelector('img')
+                if ('img'){
+                    const src = img.getAttribute("src")
+                    const requirements = imageRequirements[src]
+                    if (requirements){
+                        if (pikmin.yellowPikmin >= requirements.pikmin){
+                            //modal code here
+                        }
+                    }
+                }
+            })
+        } else if (element === "water"){
+            divs.forEach(div => {
+                let img = div.querySelector('img')
+                if ('img'){
+                    const src = img.getAttribute("src")
+                    const requirements = imageRequirements[src]
+                    if (requirements){
+                        if (pikmin.yellowPikmin >= requirements.pikmin){
+                            //modal code here
+                        }
+                    }
+                }
+            })
+        }
+    })
+})
+
+//need a connection between the class name and the specific pikmin
+//if element in div === 1 of 3 elements, player must have at least x type of that element of pikmin (I want x to be dependent on the specific image that's loaded)
+
+
+// divs.addEventListener("load", () => { //hopefully on image load, idk
+
+// })
+// //ELEMENTAL DIV LOGIC
+// allElements.forEach(ele  => {
+//     if (ele)
+// })
+
 //reference div with image in it for modal
 //write logic for elemental divs
 //WRITE DAY LOGIC
+
+//elemental logic:
+//we want to check if the player has an adequate amount of pikmin for each specific div
+//bind specific strings to pikmin number //pikmin.redPikmin
+//need to compare against the image property AND the amount of elemental pik
+
 
 
 
