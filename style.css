@@ -7,21 +7,30 @@ html {
     font-size: 20px;
 }
 
-#modal{
-    border: red solid 3px;
+#disabling-div{
+    display: none;
+    position: absolute;
+    width: 7%;
+    height: 35%;
+    left: 89%;
+    right: 0;
+    bottom: 35%;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 5;
 }
+
 .container {
     display: grid; 
     grid-template-columns:repeat(9, 1fr); 
     grid-template-rows:repeat(9, 1fr); 
     grid-template-areas: 
-        ". . . . . i5 . i9 i9"
+        ". . i8 . . i5 . i9 i9"
         "i1 . i8 . . i5 . i9 i9"
-        "i1 . i8 . . . . . ."
-        ". . . . . . . i4 i3"
-        ". . i6 . . . . i4 i3"
-        ". . i6 . . . . . ."
-        ". . . . . . . . ."
+        "i1 . . i10 i10 i10 i10 . ."
+        ". . . i10 i10 i10 i10 i4 i3"
+        ". . i6 i10 i10 i10 i10 i4 i3"
+        ". . i6 i10 i10 i10 i10 . ."
+        ". . . i10 i10 i10 i10 . ."
         ". i2 . . . . i7 . ."
         ". i2 . . . . i7 . ."; 
     height: 100vh;
@@ -75,23 +84,29 @@ html {
     font-weight: bold;
 }
 
-.i9 {
-    grid-area: i9; 
+.i9 { grid-area: i9; 
     display: flex;
     border: red solid 3px;
     color: white;
     font-weight: bold;
 }
 
-.i10{
-    grid-area: i10;
+.i10{ grid-area: i10;
+    display:none;
     color: white;
     font-weight: bold;
+    border: blue solid 3px;
 }
 
 
-.modal {
-    border: red solid 3px;
+#modal {
+    background: rgb(198,198,198);
+    background: linear-gradient(360deg, rgba(198,198,198,1) 0%, rgba(0,0,0,0.75) 59%, rgba(255,255,255,1) 100%);
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-items: center;
+    border: yellow solid 3px;
     color: white;
     font-weight: bold;
 }
@@ -117,7 +132,7 @@ html {
 }
 
 #damaged-ship {
-    width: 13em;
+    width: 5em;
     filter: brightness(50%);
     /*Increase brightness with each part collected? Optional.*/
 }
