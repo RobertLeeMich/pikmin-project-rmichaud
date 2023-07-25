@@ -64,12 +64,6 @@ olimarsShip.addEventListener("click", (e) => {
     }
 })
 
-//EVENT LISTENER FOR MODAL TO PREVENT BUBBLING
-modal.addEventListener("click", (e) => {
-    e.stopPropagation()
-    modal.innerHTML = ""
-})
-
 //CLOSE MODAL ON CLICK OUTSIDE OF MODAL EVENTLISTENER PART 2
 document.addEventListener("click", (e)=>{
 if (outerModal.style.display === "block"){
