@@ -1,5 +1,6 @@
-const body = document.querySelector("body")
 //Beginning of the Pikmin-Project
+const body = document.querySelector("body")
+
 //BACKGROUND STYLING
 body.style.backgroundImage = "url(image/thefinaltrialmap.png)"
 body.style.backgroundSize = "100vw"
@@ -33,9 +34,11 @@ let selectedPicItem = document.getElementById("selected-picture-item")
 const imageArr = ["image/armored-cannon-beetle.jpeg", "image/blue-1-pellet.png", "image/blue-5-pellet.png", "image/emperor-bulblax.jpeg","image/red-5-pellet.png", "image/red-1-pellet.png", "image/small-bulborb.png", "image/yellow-1-pellet.png", "image/yellow-5-pellet.png", "image/yellow-wollywog.png"]
 
 //COUNTER FOR DAYS AND OTHER CONDITIONALS
-let dayCounter = 6
+let dayCounter = 0
+
 //INFORMATION MODAL/EVENTLISTENER ABOUT OLIMAR'S SHIP
-damagedShip.addEventListener("click", () => {
+olimarsShip.addEventListener("click", (e) => {
+    e.stopPropagation()
     outerModal.style.display = "block"
     let img = new Image()
     img.src = "image/ssdolphinrepaired.png"
@@ -45,26 +48,36 @@ damagedShip.addEventListener("click", () => {
         modal.appendChild(img)
         modal.insertAdjacentHTML("beforeend", "<p>Congratulations! You've helped the Pikmin save Olimar and get him off of the planet and back home to his wife and kids! Press the button below to watch him blast off!</p>")
         disableButton.style.display = "block"
+        damagedShip.style.display = "none"
+        repairedShip.style.display = "block"
         //insert video & video button
     } else {
+        outerModal.style.display = "block"
         img.src = "image/ssdolphinbroken.png"
         img.style.width = "8em"
         img.style.height = "15em"
         modal.appendChild(img)
+        disableButton.style.display = "block"
+        damagedShip.style.display = "block"
+        repairedShip.style.display = "none"
         modal.insertAdjacentHTML("afterbegin", "<p>Olimar's Ship. He needs the Pikmin's help to repair it! Make sure to help him out by clicking the buttons around the map!</p>")
     }
 })
 
-//CLOSE MODAL ON CLICK OUTSIDE OF MODAL EVENTLISTENER
-document.addEventListener("click", (e)=> {
-
+//EVENT LISTENER FOR MODAL TO PREVENT BUBBLING
+modal.addEventListener("click", (e) => {
+    e.stopPropagation()
+    modal.innerHTML = ""
 })
 
-//if counter = 6 {
-    //img.src = the repaired ship
-    //else
-    //img.src = the broken ship
-//}
+//CLOSE MODAL ON CLICK OUTSIDE OF MODAL EVENTLISTENER PART 2
+document.addEventListener("click", (e)=>{
+if (outerModal.style.display === "block"){
+    outerModal.style.display = "none"
+    disableButton.style.display = "none"
+    modal.innerHTML = ""
+}
+})
 
 
 
