@@ -49,15 +49,15 @@ let bluePikmin = document.getElementById("blue-pikmin")
 const pikmin =  {
     redPikmin: {
         type: "fire",
-        numberOf: 50
+        numberOf: 1
     },
     yellowPikmin: {
         type: "electric",
-        numberOf: 50
+        numberOf: 1
     },
     bluePikmin: {
         type: "water",
-        numberOf: 50
+        numberOf: 1
     },
     get totalPikmin() {
         return this.redPikmin.numberOf + this.yellowPikmin.numberOf + this.bluePikmin.numberOf
@@ -121,53 +121,195 @@ const imageArr = [
 })
 
 //PICTURE REQUIREMENT HANDLING CONDITIONS
+let killPikminLg = Math.ceil(Math.random() * (5 - 1)) // between 5 and 1
+let killPikminSm = Math.floor(Math.random() * (3 - 1)) //between 3 and 1
+console.log(killPikminLg)
+console.log(killPikminSm)
 const imageRequirements = {
     "image/armored-cannon-beetle.png": {
-        pikmin: 10
+        pikmin: 10,
+        notEnough: `Sorry, you don't have enough Pikmin to fight this!`,
+        positiveMessage:`You killed the Armored Cannon Beetle and got 7 Pikmin!`,
+        givePikmin: 7,
+        killPikmin: `Looks like you lost ${killPikminLg} during that fight!`,
+        elementPikmin: ["fire, electric", "water"]
     },
     "image/blue-1-pellet.png": {
-        pikmin: 1
+        pikmin: 1,
+        givePikmin: 1,
+        mainElement: "water",
+        elementPikmin: ["fire, electric", "water"]
     },
     "image/blue-5-pellet.png": {
-        pikmin: 5
+        pikmin: 5,
+        givePikmin: 5,
+        mainElement: "water",
+        elementPikmin: ["fire, electric", "water"]
     },
     "image/emperor-bulblax.png": {
-        pikmin: 10
+        pikmin: 10,
+        notEnough: `Sorry, you don't have enough Pikmin to fight this!`,
+        positiveMessage: `You killed the Emperor Bulblax and got 7 Pikmin!`,
+        givePikmin: 7,
+        killPikmin: `Looks like you lost ${killPikminLg} during that fight!`,
+        rewardPikmin: ["fire, electric", "water"]
     },
     "image/red-1-pellet.png": {
-        pikmin: 1
-    },
+        pikmin: 1,
+        givePikmin: 1,
+        mainElement: "fire",
+        elementPikmin: ["fire, electric", "water"]    },
     "image/red-5-pellet.png": {
-        pikmin: 5
+        pikmin: 5,
+        givePikmin: 5,
+        mainElement: "fire",
+        elementPikmin: ["fire, electric", "water"]
     },
     "image/small-bulborb.png": {
-        pikmin: 4
+        pikmin: 4,
+        notEnough: `Sorry, you don't have enough Pikmin to fight this!`,
+        givePikmin: 5,
+        killPikmin: `Looks like you lost ${killPikminSm} during that fight!`,
+        rewardElementPikmin: ["fire, electric", "water"]
     },
     "image/yellow-1-pellet.png": {
-        pikmin: 1
+        pikmin: 1,
+        givePikmin: 1,
+        mainElement: "electric",
+        elementPikmin: ["fire, electric", "water"]
     },
     "image/yellow-5-pellet.png": {
-        pikmin: 5
+        pikmin: 5,
+        givePikmin: 5,
+        mainElement: "electric",
+        elementPikmin: ["fire, electric", "water"]
     },
     "image/yellow-wollywog.png": {
-        pikmin: 4
+        pikmin: 4,
+        notEnough: `Sorry, you don't have enough Pikmin to fight this!`,
+        givePikmin: 5,
+        killPikmin: `Looks like you lost ${killPikminSm} during that fight!`,
+        rewardElementPikmin: ["fire, electric", "water"]
     },
 }
 
-//ELEMENTAL DIV HANDLING
+// ELEMENTAL DIV HANDLING
 allElements.forEach(element => {
-    element.parentElement.addEventListener('click', function(event) {
-        event.stopPropagation();
-        let img = new Image();
-        img.src = "your_image_source_here";
-        img.style.width = "8em";
-        img.style.height = "12.2em";
-        modal.innerHTML = "<p>Some text for the modal</p>";
-        modal.appendChild(img);
-        outerModal.style.display = "block";
-        disableButton.style.display = "block";
+     //EVENTLISTENER LOOPING THROUGH USING THE PARENTELEMENT (i[num] div)
+    element.parentElement.addEventListener('click', function(event) { 
+        event.stopPropagation()
+        this.disabled = true
+
+        //CODE TO GET THE BASE IMAGE/PATH DEFINED FOR IMAGEREQUIREMENTS
+        let imageSrc = event.target.getAttribute('src');
+        let imageKey = imageSrc.replace(window.location.origin + '/', ''); //this took forever
+
+        // GETTING CLASS OF THE DIV TO COMPARE AGAINST PIKMIN
+        const clickedClass = element.className
+        let pikminType;
+        let pikminCount;
+
+        //CLASS ARRAY SELECTOR SPECIFICALLY FOR MODALS TO LOOK PRETTY
+        let classArray = clickedClass.split(' ');
+        let elementalClass = classArray.find(cls => ['fire', 'electric', 'water'].includes(cls));
+        
+        //BINDING KEY/VALUE PAIRS TO VARS FOR ELEMENTAL PIKMIN
+        let imageDetails = imageRequirements[imageKey];
+        if (["fire", "electric", "water"].includes(elementalClass)){
+            imageDetails.mainElement = elementalClass
+        }
+        let reward = imageDetails.givePikmin
+
+        //CHECKING IF THE CLICKED DIV CLASS INCLUDES CLASS OF ELEMENTAL TYPE
+        if (clickedClass.includes("fire")){
+            pikminType = "redPikmin"
+            pikminCount = pikmin.redPikmin.numberOf
+        } else if (clickedClass.includes("electric")){
+            pikminType = "yellowPikmin"
+            pikminCount = pikmin.yellowPikmin.numberOf
+        } else if (clickedClass.includes("water")){
+            pikminType = "bluePikmin"
+            pikminCount = pikmin.bluePikmin.numberOf
+        } else {
+            pikminType = null
+            pikminCount = pikmin.totalPikmin
+        }
+        //ADDING PIKMIN TO TOTAL IF USER MEETS IMAGE REQUIREMENTS + NEW IMAGE FOR MODAL
+        if (pikminCount >= imageDetails.pikmin){
+            let img = new Image();
+                img.src = imageSrc;
+                img.style.width = "8em";
+                img.style.height = "12.2em";
+                modal.innerHTML = "";
+
+                //IF USER SUCCESSFULLY GETS PIKMIN
+                if (["redPikmin", "yellowPikmin", "bluePikmin"].includes(pikminType)) {
+                    if (pikmin.numberOf >= imageDetails.pikmin){
+                        pikmin[pikminType].numberOf += imageDetails.givePikmin;
+                        pikmin.render();
+                    }
+                }
+                //APPENDING CLICKED IMAGE AND DISPLAYING MODAL
+                modal.appendChild(img);
+                outerModal.style.display = "block";
+                disableButton.style.display = "block";
+        }
+        //CHECKING PIKMIN TYPE AGAINST THE IMAGE REQUIREMENTS AND ASSIGNING THE TYPES TO VARIABLES
+        if (["redPikmin", "yellowPikmin", "bluePikmin"].includes(pikminType))  {
+            const imageSrc = element.parentElement.querySelector('img').getAttribute('src');
+            const pikminRequirement = imageRequirements[imageSrc].pikmin;
+
+            //CHECKING IF PIKMINCOUNT IS GREATER THAN OR EQUAL TO PIKMINREQUIREMENT AND PERFORMING ACTIONS
+            if (pikminCount >= pikminRequirement){
+
+                //NEW IMAGE FOR THE MODAL
+                let img = new Image();
+                img.src = imageSrc;
+                img.style.width = "8em";
+                img.style.height = "12.2em";
+
+                //CLEAR MODAL CONTENT SO USER CAN CLICK ITEM WITHOUT IT DUPLICATING
+                modal.innerHTML = "";
+
+                //ADDING NEW CONTENT TO THE MODAL
+                modal.innerHTML = `<p>You clicked on a ${elementalClass} element item with the right amount of ${elementalClass} Pikmin! You get +${reward} ${elementalClass} Pikmin!</p>`;
+                pikmin[pikminType].numberOf += reward
+                pikmin.render()
+                modal.appendChild(img)
+
+                //MODAL DISPLAY
+                outerModal.style.display = "block";
+                disableButton.style.display = "block";
+                
+                //IF USER DOES NOT HAVE ENOUGH PIKMIN
+            } else {
+                //NEW IMAGE PLACED IN THE MODAL
+                let img = new Image()
+                img.src = imageSrc
+                img.style.width = "8em"
+                img.style.height = "12.2em"
+
+                modal.innerHTML = ""
+                modal.appendChild(img)
+                modal.innerHTML += `<p>Sorry, you don't have enough ${elementalClass} Pikmin!</p>` 
+                outerModal.style.display = "block";
+                disableButton.style.display = "block";
+            }
+
+            //CLICK MODAL/OUTSIDE MODAL TO CLOSE
+            outerModal.addEventListener('click', function(event) {
+                if (event.target == outerModal) {
+                    outerModal.style.display = "none";
+                    element.parentElement.disabled = false;
+                }
+            });
+        }
     });
 });
+
+
+
+
 
 // //ADD SHIP PARTS IMAGES AND CODE!!
 
