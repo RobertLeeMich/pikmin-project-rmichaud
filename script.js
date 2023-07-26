@@ -1,5 +1,5 @@
-//Beginning of the Pikmin-Project
-const body = document.querySelector("body")
+// //Beginning of the Pikmin-Project
+let body = document.querySelector("body")
 
 //BACKGROUND STYLING
 body.style.backgroundImage = "url(image/thefinaltrialmap.png)"
@@ -8,17 +8,18 @@ body.style.backgroundRepeat = "no-repeat"
 body.style.backgroundColor = "black"
 
 //SELECTORS
-const fire = document.querySelector(".fire")
-const electric = document.querySelector(".electric")
+// const fire = document.querySelector(".fire")
+// const electric = document.querySelector(".electric")
 const olimarsShip = document.querySelector(".i3")
-const water = document.querySelector(".water")
+// const water = document.querySelector(".water")
 const div4 = document.querySelector(".i5")
 const div6 = document.querySelector(".i6")
 const div7 = document.querySelector(".i7")
 const div8 = document.querySelector(".i8")
-const outerModal = document.querySelector(".i10")
+const divs = document.querySelectorAll(".imgdiv")
+const imgDivs = document.querySelectorAll(".imgdiv")
 const disableButton = document.querySelector("#disabling-div")
-const allElements = document.querySelectorAll("fire", "electric", "water")
+const allElements = document.querySelectorAll(".fire, .electric, .water")
 
 //SHIP MANIPULATION
 const damagedShip = document.getElementById("damaged-ship")
@@ -27,8 +28,8 @@ repairedShip.style.display = "none" //Flip this later when ship is repaired
 
 //MODAL MANIPULATION
 const modal = document.getElementById("modal")
+const outerModal = document.querySelector(".i10")
 outerModal.style.display = "none" //setting the modal to not display anything before a click
-let selectedPicItem = document.getElementById("selected-picture-item")
 
 document.addEventListener("click", (e)=>{
     if (outerModal.style.display === "block"){
@@ -38,9 +39,9 @@ document.addEventListener("click", (e)=>{
     }
     })
 
-//PIKMIN COUNTER/PIKMIN MANIPULATION
+// PIKMIN COUNTER/PIKMIN MANIPULATION
 const outerPikminNumbers = document.querySelector(".i9")
-const innerPikminNumbers = document.querySelector("#pikmin-numbers")
+const innerPikminNumbers = document.getElementById("#pikmin-numbers")
 let redPikmin = document.getElementById("red-pikmin")
 let yellowPikmin = document.getElementById("yellow-pikmin")
 let bluePikmin = document.getElementById("blue-pikmin")
@@ -48,15 +49,15 @@ let bluePikmin = document.getElementById("blue-pikmin")
 const pikmin =  {
     redPikmin: {
         type: "fire",
-        numberOf: 1
+        numberOf: 50
     },
     yellowPikmin: {
         type: "electric",
-        numberOf: 0
+        numberOf: 50
     },
     bluePikmin: {
         type: "water",
-        numberOf: 0
+        numberOf: 50
     },
     get totalPikmin() {
         return this.redPikmin.numberOf + this.yellowPikmin.numberOf + this.bluePikmin.numberOf
@@ -72,7 +73,7 @@ pikmin.render()
 //COUNTER FOR DAYS AND OTHER CONDITIONALS
 let dayCounter = 0
 
-//INFORMATION MODAL/EVENTLISTENER ABOUT OLIMAR'S SHIP
+//INFORMATION MODAL/EVENT LISTENER ABOUT OLIMAR'S SHIP
 olimarsShip.addEventListener("click", (e) => {
     e.stopPropagation()
     outerModal.style.display = "block"
@@ -108,7 +109,7 @@ const imageArr = [
 ] //LENGTH 10
 
 //CODE TO RANDOMIZE THE ELEMENTS AND ADD THEM TO EACH DIV
-const divs = document.querySelectorAll(".imgdiv").forEach(div => {
+    divs.forEach(div => {
     const random = Math.floor(Math.random() * imageArr.length)
     const imgTag = document.createElement(`img`)
     imgTag.setAttribute("src", imageArr[random]) 
@@ -155,79 +156,26 @@ const imageRequirements = {
 
 //ELEMENTAL DIV HANDLING
 allElements.forEach(element => {
-    element.addEventListener("click", () => {
-        if (element === "fire"){
-            divs.forEach(div => {
-                let img = div.querySelector('img')
-                if ('img'){
-                    const src = img.getAttribute("src")
-                    const requirements = imageRequirements[src]
-                    if (requirements){
-                        if (pikmin.yellowPikmin >= requirements.pikmin){
-                            //modal code here
-                        }
-                    }
-                }
-            })
-        } else if (element === "electric"){
-            divs.forEach(div => {
-                let img = div.querySelector('img')
-                if ('img'){
-                    const src = img.getAttribute("src")
-                    const requirements = imageRequirements[src]
-                    if (requirements){
-                        if (pikmin.yellowPikmin >= requirements.pikmin){
-                            //modal code here
-                        }
-                    }
-                }
-            })
-        } else if (element === "water"){
-            divs.forEach(div => {
-                let img = div.querySelector('img')
-                if ('img'){
-                    const src = img.getAttribute("src")
-                    const requirements = imageRequirements[src]
-                    if (requirements){
-                        if (pikmin.yellowPikmin >= requirements.pikmin){
-                            //modal code here
-                        }
-                    }
-                }
-            })
-        }
-    })
-})
+    element.parentElement.addEventListener('click', function(event) {
+        event.stopPropagation();
+        let img = new Image();
+        img.src = "your_image_source_here";
+        img.style.width = "8em";
+        img.style.height = "12.2em";
+        modal.innerHTML = "<p>Some text for the modal</p>";
+        modal.appendChild(img);
+        outerModal.style.display = "block";
+        disableButton.style.display = "block";
+    });
+});
 
-//need a connection between the class name and the specific pikmin
-//if element in div === 1 of 3 elements, player must have at least x type of that element of pikmin (I want x to be dependent on the specific image that's loaded)
+// //ADD SHIP PARTS IMAGES AND CODE!!
 
+// //reference div with image in it for modal
+// //write logic for elemental divs
+// //WRITE DAY LOGIC
 
-// divs.addEventListener("load", () => { //hopefully on image load, idk
-
-// })
-// //ELEMENTAL DIV LOGIC
-// allElements.forEach(ele  => {
-//     if (ele)
-// })
-
-//reference div with image in it for modal
-//write logic for elemental divs
-//WRITE DAY LOGIC
-
-//elemental logic:
-//we want to check if the player has an adequate amount of pikmin for each specific div
-//bind specific strings to pikmin number //pikmin.redPikmin
-//need to compare against the image property AND the amount of elemental pik
-
-
-
-
-
-
-
-
-
-
-
-
+// //elemental logic:
+// //we want to check if the player has an adequate amount of pikmin for each specific div
+// //bind specific strings to pikmin number //pikmin.redPikmin
+// //need to compare against the image property AND the amount of elemental pikmin
