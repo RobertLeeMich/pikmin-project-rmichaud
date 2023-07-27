@@ -34,7 +34,6 @@ modal.style.display = "none"
 // PIKMIN COUNTER/PIKMIN MANIPULATION
 const pikmin =  {
     redPikmin: {
-        type: "fire",
         numberOf: 20
     },
     element: document.querySelector("#pikmin-numbers"),

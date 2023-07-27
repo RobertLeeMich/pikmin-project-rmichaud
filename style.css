@@ -27,10 +27,10 @@ html {
         ". . . . . . . i4 i4"
         ". . . . . . . i4 i4"
         ". . . . . . . . ."
-        ". . . . . . . . ."
-        ". . i1 . . . . i2 ."
-        ". . i1 . . . . i2 ."
-        ". . . . . . . . ."
+        ". . . i5 i5 i5 . i2 ."
+        ". . i1 i5 i5 i5 . i2 ."
+        ". . i1 i5 i5 i5 . . ."
+        ". . . i5 i5 i5 . . ."
         ". . . . . . . . ."
         ". . . . . i3 . . ."; 
     height: 100vh;
@@ -59,4 +59,21 @@ html {
     border: red solid 3px;
     color: white;
     font-weight: bold;
+    display: flex;
 }
+
+/* .i5 { grid-area: i5; 
+    border: red solid 3px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+} */
+
+#olimar {
+    width: 4em;
+}
+
+#ssdolphin{
+    width: 3em;
+}
+
