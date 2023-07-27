@@ -19,6 +19,14 @@ html {
    
 }
 
+#day-timer{
+    position: absolute;
+    color: white;
+    top: 25%;
+    left: 35%;
+    font-size: 1.6em;
+}
+
 .container {
     display: grid;
     grid-template-columns:repeat(9, 1fr); 
