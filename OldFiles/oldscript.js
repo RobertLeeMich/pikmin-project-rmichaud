@@ -88,7 +88,7 @@ olimarsShip.addEventListener("click", (e) => {
     //OLIMARSSHIP REPAIRED/FIXED
     if (dayCounter <= 6 && shipPartCounter === 6) {
         modal.appendChild(img)
-        modal.insertAdjacentHTML("beforeend", "<p class = \"olimar-ship-text\" >Congratulations! You've helped the Pikmin save Olimar and get him off of the planet and back home to his wife and kids! Press the button below to watch him blast off!</p>")
+        modal.insertAdjacentHTML("beforeend", "z<p class = \"olimar-ship-text\" >Congratulations! You've helped the Pikmin save Olimar and get him off of the planet and back home to his wife and kids! Press the button below to watch him blast off!</p>")
         disableButton.style.display = "block"
         damagedShip.style.display = "none"
         repairedShip.style.display = "block"
@@ -201,7 +201,7 @@ allElements.forEach(element => {
      //EVENTLISTENER LOOPING THROUGH USING THE PARENTELEMENT (i[num] div)
     element.parentElement.addEventListener('click', function(event) { 
         event.stopPropagation()
-        this.disabled = true
+        this.disabled = truez
 
         //CODE TO GET THE BASE IMAGE/PATH DEFINED FOR IMAGEREQUIREMENTS
         let imageSrc = event.target.getAttribute('src');

@@ -104,7 +104,7 @@ function attachEventListeners() {
                 nextDayDiv.style.display = "block";
             }
         });
-    });
+    });z
 }
 
 //MODAL SETUP FUNCTION

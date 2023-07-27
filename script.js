@@ -10,7 +10,6 @@ let itemSelect = document.querySelector(".i1")
 const olimarShip = document.querySelector(".i2")
 const resetButton = document.querySelector(".i3")
 const olimarBox = document.querySelector(".i4")
-// const pikminTotalBox = document.getElementById("pikmin-total")
 const nextDayOverlay = document.getElementById("next-day-overlay")
 const nextDayButton = document.getElementById("next-day-button")
 const dayTimer = document.getElementById("day-timer")
@@ -44,13 +43,13 @@ let clickCounter = 0
 itemSelect.addEventListener("click", (e) => {
     clickCounter++
     if (clickCounter === 2){
-        nextDayOverlayShow()
         clickCounter = 0
+        nextDayOverlayShow()
     }
 
 })
 
-//ROUND SETUP
+//ROUND SETUP FUNCTIONALITY
 let dayCounter = 0
 let shipPartCounter = 0
 let monsterCounter = 0
@@ -61,20 +60,29 @@ nextDayButton.addEventListener("click", (e) => {
     dayCounter++
     updateDayTimer()
     nextDayOverlayHide()
+    if (dayCounter === 6 || monsterCounter >= 3){ //the button was skipping 3, so >=3 makes the condition run
+        nextDayOverlayShow()
+        nextDayButton.style.display = "none"
+        showPlayAgain()
+    } else if (dayCounter <= 6 && shipPartCounter === 6){
+        nextDayOverlayShow()
+        showPlayAgain()
+    }
 
 })
 
+//PLAY AGAIN FUNCTIONALITY
 function showPlayAgain(){
     playAgainButton.style.display = "block"
-    function refreshPage(){
-        window.location.reload();
-    } 
-}
 
+}
 function hidePlayAgain (){
     playAgainButton.style.display = "none"
 
 }
+playAgainButton.addEventListener("click", (e) => {
+    window.location.reload()
+})
 
 
 hidePlayAgain()
@@ -82,11 +90,9 @@ function updateDayTimer() {
     if (dayCounter === 6 || monsterCounter >= 3){ //the button was skipping 3, so >=3 makes the condition run
         dayTimer.innerHTML = `<p>You Lose! Click the Play Again button below to try again!</p>`
         showPlayAgain()
-        nextDayOverlayShow()
     } else if (dayCounter <= 6 && shipPartCounter === 6){
         dayTimer.innerHTML = `<p> You win! Your high score: ${pikmin.numberOf} </p>`;
         showPlayAgain()
-        nextDayOverlayShow()
         } else {
         dayTimer.innerHTML = `<p>You have taken ${dayCounter}/6 days!</p>`;
         hidePlayAgain()
@@ -117,31 +123,59 @@ let imageRequirements = {
     "image/armored-cannon-beetle.png": {
         isMonster: true,
         shipPart: false,
-        addPikmin: false
+        addPikmin: false,
+        removePikmin: function() {
+            if (pikmin.numberOf > 10){
+                pikmin.numberOf -= 5
+            } else {
+                return
+            }
+        }
 
     },
     "image/emperor-bulblax.png": {
         isMonster: true, 
         shipPart: false,
-        addPikmin: false 
-
+        addPikmin: false,
+        removePikmin: function() {
+            if (pikmin.numberOf > 10){
+                pikmin.numberOf -= 5
+            } else {
+                return
+            }
+        }
     },
     "image/small-bulborb.png": {
         isMonster: true, 
         shipPart: false,
-        addPikmin: false 
+        addPikmin: false,
+        removePikmin: function() {
+            if (pikmin.numberOf > 5){
+                pikmin.numberOf -= 3
+            } else {
+                return
+            }
+        } 
 
     },
     "image/yellow-wollywog.png": {
         isMonster: true,
         shipPart: false,
-        addPikmin: false 
+        addPikmin: false,
+        removePikmin: function() {
+            if (pikmin.numberOf > 5){
+                pikmin.numberOf -= 3
+            } else {
+                return
+            }
+        } 
 
     },
     "image/shipparts/secret-safe.png": {
         isMonster: false,
         isShipPart: true,
-        addPikmin: false
+        addPikmin: false,
+
     }, 
     "image/shipparts/chronos-reactor.png":{
         isMonster: false,
@@ -185,6 +219,7 @@ let imageRequirements = {
 }
 //ADDS IMAGE TO DIV FOR USER TO CLICK
 let tempImageArr = [...imageArr]
+if (tempImageArr)
 function imageIteration(){
     const random = Math.floor(Math.random() * tempImageArr.length)
     const imgTag = document.createElement(`img`)
@@ -219,8 +254,11 @@ itemSelect.addEventListener("click", (e) => {
     let isAMonster = imageDetails.isMonster
     let isAShipPart = imageDetails.isShipPart
     let addPikmin = imageDetails.addPikmin
-    if (isAMonster){
+    let removePikmin = imageDetails.removePikmin
+    if (isAMonster && removePikmin){
         monsterCounter++
+        removePikmin()
+        pikmin.render()
     } else if (isAShipPart){
         shipPartCounter++
     } else if (addPikmin){
@@ -229,9 +267,8 @@ itemSelect.addEventListener("click", (e) => {
     }
 
     imageIteration()
-}
+    }
+
+
+
 })
-
-
-
-

@@ -61,6 +61,7 @@ html {
     border: red solid 3px;
     color: white;
     font-weight: bold;
+    z-index: 1001;
 }
 
 .i4 { grid-area: i4; 
@@ -96,6 +97,10 @@ bottom: 0%;
 background-color: rgba(255, 255, 255, 0.4);
 z-index: 999;
 }
+
+/* #play-again-button {
+    z-index: 1001;
+} */
 
 #next-day-button{
         display: block;
