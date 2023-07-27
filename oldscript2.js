@@ -10,28 +10,29 @@ body.style.backgroundColor = "black"
 //SELECTORS
 let divs = document.querySelectorAll(".imgdiv")
 const imgDivs = document.querySelectorAll(".imgdiv")
-const damagedShip = document.getElementById("damaged-ship")
-const repairedShip = document.getElementById("repaired-ship")
-const innerPikminNumbers = document.getElementById("#pikmin-numbers")
-const olimarsShip = document.querySelector(".i3")
+
+//i5, i6, i8 normal div selectors
 const div5 = document.querySelector(".i5")
 const div6 = document.querySelector(".i6")
 const div7 = document.querySelector(".i7")
 const div8 = document.querySelector(".i8")
-const outerPikminNumbers = document.querySelector(".i9")
-const modal = document.querySelector(".i10")
-const container = document.querySelector(".container")
-const nextDayDiv = document.querySelector("#next-day-div")
-const nextDayButton = document.querySelector("#next-day")
+// const allNormalDivs = document.querySelectorAll(".i1, .i2, .i4, .i5, .i6, .i7, .i8")
 
 //SHIP MANIPULATION
+const olimarsShip = document.querySelector(".i3")
+const damagedShip = document.getElementById("damaged-ship")
+const repairedShip = document.getElementById("repaired-ship")
 repairedShip.style.display = "none";
 
 
 //MODAL MANIPULATION
-modal.style.display = "none"
+const modal = document.querySelector(".i10")
+modal.style.display = "none" //setting the modal to not display anything before a click
 
 // PIKMIN COUNTER/PIKMIN MANIPULATION
+const outerPikminNumbers = document.querySelector(".i9")
+const innerPikminNumbers = document.getElementById("#pikmin-numbers")
+
 const pikmin =  {
     redPikmin: {
         type: "fire",
@@ -65,7 +66,22 @@ function saveDayTimer() {
 }
 
 //DIV EVENTLISTENER FOR LIMITING CLICKS PER ROUND
+const container = document.querySelector(".container")
+const nextDayDiv = document.querySelector("#next-day-div")
+const nextDayButton = document.querySelector("#next-day")
 let divClicks = 0
+
+containerListener = function(event) {
+    if (event.target && event.target.nodeName == "DIV" || event.target.nodeName == "IMG") {
+        divClicks += 1;
+        if (divClicks === 3){
+            console.log(divClicks);
+            nextDayDiv.style.display = "block";
+        }
+    }
+};
+container.addEventListener("click", containerListener);
+
 
 //BUTTON THAT ADDS TO THE DAY TOTAL AND RANDOMIZES DIVS USING FUNCTION
 nextDayButton.addEventListener("click", (e) => {
@@ -75,7 +91,21 @@ nextDayButton.addEventListener("click", (e) => {
     updateDayTimer()
     console.log(dayCounter)
     nextDayDiv.style.display = "none"
+    attachEventListeners()
 })
+
+function attachEventListeners() {
+    divs.forEach((div) => {
+        // Add event listener to div
+        div.addEventListener("click", function(event) {
+            divClicks += 1;
+            if (divClicks === 3) {
+                console.log(divClicks);
+                nextDayDiv.style.display = "block";
+            }
+        });
+    });
+}
 
 //MODAL SETUP FUNCTION
 function openModal(shipImageSrc, message) {
@@ -117,7 +147,7 @@ function randomizeDivsOnce() {
     const random = Math.floor(Math.random() * tempImageArr.length)
     const imgTag = document.createElement(`img`)
     imgTag.setAttribute("src", tempImageArr[random]) 
-    //(temp)ImageArr[random]  ENDS UP RETURNING A STRING BECAUSE THE ARRAY ITEM IS A STRING, SO IT'S A VALUD ARG FOR setAttribute()
+    //(temp)ImageArr[random] ends up returning a string because the array item is a string so it's a valid arg for setAttribute
     imgTag.setAttribute("class", "div-image") 
     div.appendChild(imgTag)
     //CODE TO REMOVE AN ELEMENT SO IT'S NOT REPEATED ON A ROUND(DAY) IN ANOTHER DIV
@@ -224,3 +254,16 @@ const imageRequirements = {
         monsterSize: false
     }
 }
+
+
+
+
+
+
+// //ADD SHIP PARTS IMAGES AND CODE!!
+// //WRITE DAY LOGIC
+
+// //elemental logic:
+// //we want to check if the player has an adequate amount of pikmin for each specific div
+// //bind specific strings to pikmin number //pikmin.redPikmin
+// //need to compare against the image property AND the amount of elemental pikmin
