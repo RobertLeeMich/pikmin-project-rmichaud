@@ -14,6 +14,7 @@ const olimarBox = document.querySelector(".i4")
 const nextDayOverlay = document.getElementById("next-day-overlay")
 const nextDayButton = document.getElementById("next-day-button")
 const dayTimer = document.getElementById("day-timer")
+const playAgainButton = document.getElementById("play-again-button")
 // let contentDiv = document.querySelector(".i5")
 
 // //SHOWING DIV IN MIDDLE OF SCREEN FOR INFORMATION ABOUT ITEM CLICKED (NULLIFIED FOR NOW)
@@ -46,6 +47,7 @@ itemSelect.addEventListener("click", (e) => {
         nextDayOverlayShow()
         clickCounter = 0
     }
+
 })
 
 //ROUND SETUP
@@ -59,18 +61,35 @@ nextDayButton.addEventListener("click", (e) => {
     dayCounter++
     updateDayTimer()
     nextDayOverlayHide()
-    
-    
+
 })
 
-//divrefresh/overlayremoval code
+function showPlayAgain(){
+    playAgainButton.style.display = "block"
+    function refreshPage(){
+        window.location.reload();
+    } 
+}
+
+function hidePlayAgain (){
+    playAgainButton.style.display = "none"
+
+}
 
 
+hidePlayAgain()
 function updateDayTimer() {
-    if (dayCounter === 6 && shipPartCounter === 6){
-        dayTimer.innerHTML = `<p> Click Olimar's ship to leave the planet! </p>`;
-    } else {
+    if (dayCounter === 6 || monsterCounter >= 3){ //the button was skipping 3, so >=3 makes the condition run
+        dayTimer.innerHTML = `<p>You Lose! Click the Play Again button below to try again!</p>`
+        showPlayAgain()
+        nextDayOverlayShow()
+    } else if (dayCounter <= 6 && shipPartCounter === 6){
+        dayTimer.innerHTML = `<p> You win! Your high score: ${pikmin.numberOf} </p>`;
+        showPlayAgain()
+        nextDayOverlayShow()
+        } else {
         dayTimer.innerHTML = `<p>You have taken ${dayCounter}/6 days!</p>`;
+        hidePlayAgain()
     }
 }
 
@@ -87,14 +106,6 @@ const pikmin =  {
     }
 }
 pikmin.render()
-
-//PLAY AGAIN BUTTON
-resetButton.addEventListener("click", (e) => {
-    function refreshPage(){
-        window.location.reload();
-    } 
-    refreshPage()
-})
 
 //PLAYER SELECTS ITEM, ITEM GETS ADDED TO ARRAY, IF PLAYER HAS 3 MONSTERS THEY LOSE, IF PLAYER HAS 3 SHIP PARTS, THEY WIN
 const imageArr = [
@@ -159,14 +170,14 @@ let imageRequirements = {
     },
     "image/red-5-pellet.png":{
         isMonster: false,
-        shipPart: false,
+        isShipPart: false,
         addPikmin: function () {
             return pikmin.numberOf += 5
         }
     },
     "image/red-1-pellet.png":{
         isMonster: false,
-        shipPart: false,
+        isShipPart: false,
         addPikmin: function () {
             return pikmin.numberOf += 1
         }
@@ -187,11 +198,9 @@ function imageIteration(){
 }
 imageIteration()
 
-
-
 //RANDOMIZED IMAGES IN THE DIV
 let randomizedImage = document.querySelector(".div-image")
-let userWinOrLoseArr = []
+let userWinOrLoseArr = [] //I was going to check if the amount of monsters in the array were >3, or the ship parts were >3, but I ended up using counters for some reason. Which works, I guess.
 
 randomizedImage.addEventListener("click", (e) => {
     let imageSrc = e.target.getAttribute('src');
@@ -199,22 +208,19 @@ randomizedImage.addEventListener("click", (e) => {
     let imageDetails = imageRequirements[imageKey]
     console.log(e) //div-image
     userWinOrLoseArr.push(imageDetails)
-    console.log(userWinOrLoseArr) //HAS THE OBJECTS IN IT
 
-    //CHECK IMAGE, INCREMENT COUNTERS ON CLICK
-    let isMonster = imageDetails.isMonster
-    let isShipPart = imageDetails.isShipPart
+    //CHECK IMAGE, INCREMENT COUNTERS ON CLICK FOR FAILSTATE OR 
+    let isAMonster = imageDetails.isMonster
+    let isAShipPart = imageDetails.isShipPart
     let addPikmin = imageDetails.addPikmin
-    if (isMonster === true){
+    if (isAMonster){
         monsterCounter++
-        console.log(monsterCounter) //INCREMENTS MONSTERCOUNTER
-    } else if (isShipPart === true){
+        console.log(monsterCounter)
+    } else if (isAShipPart){
         shipPartCounter++
-        console.log(shipPartCounter)
     } else if (addPikmin){
         addPikmin()
         pikmin.render()
-        console.log(pikmin.numberOf) //INCREMENTS PIKMIN TOTAL ON SCREEN
     }
 })
 
