@@ -103,11 +103,18 @@ function imageIteration(){
     itemSelect.appendChild(imgTag)
     //CODE TO REMOVE AN ELEMENT SO IT'S NOT REPEATED ON A ROUND(DAY) IN ANOTHER DIV
     tempImageArr.splice(random, 1)
+
 }
 imageIteration()
 
+//RANDOMIZED IMAGES IN THE DIV
 let randomizedImage = document.querySelector(".div-image")
-
-randomizedImage.addEventListener("click" (e) => {
-
+let userWinOrLoseArr = []
+randomizedImage.addEventListener("click", (e) => {
+    let imageSrc = e.target.getAttribute('src');
+    let imageKey = imageSrc.replace(window.location.origin + '/', ''); 
+    let imageDetails = imageRequirements[imageKey]
+    console.log(e) //div-image
+    userWinOrLoseArr.push(imageDetails)
+    console.log(userWinOrLoseArr) //has the objects in it
 })
