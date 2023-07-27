@@ -184,13 +184,20 @@ let imageRequirements = {
     },
 }
 //ADDS IMAGE TO DIV FOR USER TO CLICK
+let tempImageArr = [...imageArr]
 function imageIteration(){
-    let tempImageArr = [...imageArr]
     const random = Math.floor(Math.random() * tempImageArr.length)
     const imgTag = document.createElement(`img`)
     imgTag.setAttribute("src", tempImageArr[random]) 
     //(temp)ImageArr[random]  ENDS UP RETURNING A STRING BECAUSE THE ARRAY ITEM IS A STRING, SO IT'S A VALUD ARG FOR setAttribute()
     imgTag.setAttribute("class", "div-image") 
+
+    //REMOVE OLD IMAGE
+    let oImage = document.querySelector(".div-image")
+    if (oImage){
+        oImage.remove()
+    }
+
     itemSelect.appendChild(imgTag)
     //CODE TO REMOVE AN ELEMENT SO IT'S NOT REPEATED ON A ROUND(DAY) IN ANOTHER DIV
     tempImageArr.splice(random, 1)
@@ -198,16 +205,15 @@ function imageIteration(){
 }
 imageIteration()
 
-//RANDOMIZED IMAGES IN THE DIV
-let randomizedImage = document.querySelector(".div-image")
-let userWinOrLoseArr = [] //I was going to check if the amount of monsters in the array were >3, or the ship parts were >3, but I ended up using counters for some reason. Which works, I guess.
+//HAVE TO ADD EVENTLISTENER BACK TO THE NEW IMAGE AFTER THE IMAGE CYCLES OUT
 
-randomizedImage.addEventListener("click", (e) => {
+//RANDOMIZED IMAGES IN THE DIV
+itemSelect.addEventListener("click", (e) => {
+    if (e.target.tagName === "IMG"){
     let imageSrc = e.target.getAttribute('src');
     let imageKey = imageSrc.replace(window.location.origin + '/', ''); 
     let imageDetails = imageRequirements[imageKey]
     console.log(e) //div-image
-    userWinOrLoseArr.push(imageDetails)
 
     //CHECK IMAGE, INCREMENT COUNTERS ON CLICK FOR FAILSTATE OR 
     let isAMonster = imageDetails.isMonster
@@ -215,13 +221,15 @@ randomizedImage.addEventListener("click", (e) => {
     let addPikmin = imageDetails.addPikmin
     if (isAMonster){
         monsterCounter++
-        console.log(monsterCounter)
     } else if (isAShipPart){
         shipPartCounter++
     } else if (addPikmin){
         addPikmin()
         pikmin.render()
     }
+
+    imageIteration()
+}
 })
 
 
