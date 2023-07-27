@@ -7,10 +7,12 @@ body.style.backgroundRepeat = "no-repeat"
 body.style.backgroundColor = "black"
 
 let itemSelect = document.querySelector(".i1")
-let olimarShip = document.querySelector(".i2")
-let resetButton = document.querySelector(".i3")
-let olimarBox = document.querySelector(".i4")
-let pikminTotal = document.getElementById("pikmin-total")
+const olimarShip = document.querySelector(".i2")
+const resetButton = document.querySelector(".i3")
+const olimarBox = document.querySelector(".i4")
+const pikminTotal = document.getElementById("pikmin-total")
+const nextDayOverlay = document.getElementById("next-day-overlay")
+const nextDayButton = document.getElementById("next-day-button")
 // let contentDiv = document.querySelector(".i5")
 
 // //SHOWING DIV IN MIDDLE OF SCREEN FOR INFORMATION ABOUT ITEM CLICKED (NULLIFIED FOR NOW)
@@ -21,6 +23,23 @@ let pikminTotal = document.getElementById("pikmin-total")
 //         contentDiv.style.display === "none"
 //     }
 // }
+
+//DISABLE ELEMENTS DIV/NEXT DAY BUTTON
+function nextDayOverlayShowHide() {
+    if (nextDayOverlay.style.display = "none"){
+        nextDayOverlay.style.display = "block"
+    }
+}
+
+//ROUND SETUP
+let dayCounter = 0
+let shipPartCounter = 0
+
+nextDayButton.addEventListener("click", (e) => {
+    daycounter++
+})
+
+
 
 // PIKMIN COUNTER/PIKMIN MANIPULATION
 const pikmin =  {
@@ -107,9 +126,20 @@ function imageIteration(){
 }
 imageIteration()
 
+//SEE IF USER CLICKED TWICE ON THE DIV
+let clickCounter = 0
+itemSelect.addEventListener("click", (e) => {
+    clickCounter++
+    if (clickCounter === 2){
+        nextDayOverlayShowHide()
+    }
+})
+
+
 //RANDOMIZED IMAGES IN THE DIV
 let randomizedImage = document.querySelector(".div-image")
 let userWinOrLoseArr = []
+
 randomizedImage.addEventListener("click", (e) => {
     let imageSrc = e.target.getAttribute('src');
     let imageKey = imageSrc.replace(window.location.origin + '/', ''); 
@@ -118,3 +148,5 @@ randomizedImage.addEventListener("click", (e) => {
     userWinOrLoseArr.push(imageDetails)
     console.log(userWinOrLoseArr) //has the objects in it
 })
+
+
