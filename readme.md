@@ -42,7 +42,7 @@ Visit the github pages website at https://robertleemich.github.io/pikmin-project
 
 I can be reached at robert.mich@mail.com for any inquiries.
 
-##Difficulties I had with this project
+## Difficulties I had with this project
 
 My imagination ran wild with this project now that I am aware of how to create this kind of stuff in JavaScript in a browser. I am ecstatic to be able to create this stuff and understand JS code more than I ever have in the last 10 years of working with HTML/CSS and a wee bit of JS. I'm so excited for new knowledge and these projects and homework and stuff to exercise my brain.
 
