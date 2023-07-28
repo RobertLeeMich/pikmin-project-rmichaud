@@ -12,7 +12,7 @@ Click the left box to "gather" the item, or click a monster and get hurt. If you
 
 HTML, CSS, JavaScript
 
-##Requirements Met
+## Requirements Met
 
 This is a game, so the requirements met are:
 
