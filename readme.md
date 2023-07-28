@@ -1,4 +1,4 @@
-# Project Title
+# The Pikmin Project
 
 A simple small game based on Nintendo's IP, Pikmin.
 
@@ -8,7 +8,7 @@ The game is RNG-based, so it's based on chance, but you can win!
 
 Click the left box to "gather" the item, or click a monster and get hurt. If you click 3 monsters, you lose. If you click 3 ship parts, you win. You can accrue more score by clicking the Pikmin Pellets that come up that are labeled with a 1 and a 5.
 
-##Technologies Used
+## Technologies Used
 
 HTML, CSS, JavaScript
 
@@ -58,7 +58,7 @@ I also struggled with using localStorage and understanding how it worked, since 
 
 Contributors names and contact info
 
-Robert Michaud
+Robert Michaud - robert.mich@mail.com
 
 ## Version History
 
