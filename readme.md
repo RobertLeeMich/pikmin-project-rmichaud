@@ -44,7 +44,7 @@ I can be reached at robert.mich@mail.com for any inquiries.
 
 ## Difficulties I had with this project
 
-My imagination ran wild with this project now that I am aware of how to create this kind of stuff in JavaScript in a browser. I am ecstatic to be able to create this stuff and understand JS code more than I ever have in the last 10 years of working with HTML/CSS and a wee bit of JS. I'm so excited for new knowledge and these projects and homework and stuff to exercise my brain.
+I imagined this project to be fairly extensive on paper, now that I am aware of how to create this kind of stuff in JavaScript in a browser. I am ecstatic to be able to create this stuff and understand JS code more than I ever have in the last 10 years of working with HTML/CSS and a wee bit of JS. I'm so excited for new knowledge and these projects and homework and stuff to exercise my brain.
 
 However, my plan that I wrote down was way too big of a scope to perform in a week, but I thought I could do it, and I probably could have if I had actually used my brain a little bit. But I had 2 iterations of the project's .js file before I ran out of time and had to create this severely cut down version of what I actually wanted. So I learned to have a project be functional modularly before moving onto other parts of the project.
 
