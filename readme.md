@@ -69,5 +69,5 @@ Robert Michaud
 
 Inspiration, code snippets, etc.
 * stackOverflow (https://stackoverflow.com/)
-* Per Scholas for being awesome and creating this course (https://perscholas.org/)
+* Per Scholas for being awesome and creating this full-stack course (https://perscholas.org/)
 * Joshua and Christina for sharing their infinite wisdom and enabling me to make this (Instructors for the Full-Stack development course)
