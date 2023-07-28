@@ -54,6 +54,18 @@ I did ask on stackOverflow about the high scores (https://stackoverflow.com/ques
 
 I also struggled with using localStorage and understanding how it worked, since I had used it previously for the day timer, but I couldn't really grasp how to insert it into the high scores. But when I saw the user's code, it made sense, it made sense, but like I mentioned, I still need some practice particularly using localStorage and manipulating data in it.
 
+## Stretch Goals
+
+* I wanted to have specific divs that required a specific number of type of Pikmin to interact with the image in the box. I did have this working at a point in a different iteration, but it ended up not working out.
+
+* I wanted to have different kinds of Pikmin in general. Again I did have this working (Thanks Barbie codealong) but again, ended up not working out.
+
+* Using modals to display information about the item you clicked, your success/failure of getting items/fighting monsters with your Pikmin, etc. I did have this halfway working previously as well.
+
+* I wanted to have sounds for specific actions, i.e. when the user clicks a pellet it brings up a modal that displays the image of the pellet and pikmin carrying the pellet with the "pikmin working" noise, sounds for Pikmin fighting monsters, sounds for the background of the website with little "pikmin humming" noises from the game.
+
+* I also wanted to implement a video when the user wins the game that would have displayed in the modal on a button press of Olimar leaving the planet, from Pikmin 1.
+
 ## Authors
 
 Contributors names and contact info
