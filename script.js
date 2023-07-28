@@ -57,15 +57,15 @@ function saveHighScore() {
     localStorage.setItem("high-score-content", highScoreNumbers); // Store the high score directly as a string
 }
   // FUNCTION TO LOAD AND DISPLAY HIGH SCORE FROM LOCALSTORAGE
-  function loadHighScore() {
+function loadHighScore() {
     let highScoreDiv = document.getElementById("high-scores");
     let highScoreNumbers = localStorage.getItem("high-score-content"); // Retrieve the high score as a string
     if (highScoreNumbers) {
-      let highScoreDivNew = document.createElement("div");
-      highScoreDivNew.textContent = highScoreNumbers; // Use textContent to set the text of the new div
-      highScoreDiv.appendChild(highScoreDivNew);
+    let highScoreDivNew = document.createElement("div");
+    highScoreDivNew.textContent = highScoreNumbers; // Use textContent to set the text of the new div
+    highScoreDiv.appendChild(highScoreDivNew);
     }
-  }
+}
 
 //SEE IF USER CLICKED TWICE ON THE DIV
 let clickCounter = 0
