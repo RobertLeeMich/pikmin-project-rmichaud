@@ -307,7 +307,4 @@ itemSelect.addEventListener("click", (e) => {
         }
     imageIteration()
     }
-
-
-
 })
