@@ -17,16 +17,6 @@ const playAgainButton = document.getElementById("play-again-button")
 let highScoreDiv = document.getElementById("high-scores")
 const highScoreShowButton = document.getElementById("high-scores-show-button")
 const highScoreCloseButton = document.getElementById("high-scores-close-button")
-// let contentDiv = document.querySelector(".i5")
-
-// //SHOWING DIV IN MIDDLE OF SCREEN FOR INFORMATION ABOUT ITEM CLICKED (NULLIFIED FOR NOW)
-// function contentDivShowHide() {
-//     if (contentDiv.style.display === "none"){
-//         contentDiv.style.display === "block"
-//     } else {
-//         contentDiv.style.display === "none"
-//     }
-// }
 
 // PIKMIN COUNTER/PIKMIN MANIPULATION
 let pikmin =  {
@@ -38,7 +28,7 @@ let pikmin =  {
 }
 pikmin.render()
 
-//HIGH SCORES
+//HIGH SCORE SHOW/CLOSE
 function openHighScores() {
     highScoreDiv.style.display = "flex"
     highScoreCloseButton.style.display = "block"
@@ -55,24 +45,18 @@ highScoreCloseButton.addEventListener("click", (e) => {
     closeHighScores()
 })
 
-//figure out how to insert elements into the high score div and save the elements
-
 //ASKED ON STACKOVERFLOW FOR THIS
- // Function to save high score
-// Function to save high score
+//FUNCTION TO SAVE HIGH SCORES
 function saveHighScore() {
     let date = new Date();
     let highScoreDiv = document.getElementById("high-scores"); // Assuming you have a div with the id "highScoreDiv"
     let highScoreNumbers = `Your high score is ${pikmin.numberOf} on ${date}!`;
-  
     let highScoreDivNew = document.createElement("div");
     highScoreDivNew.textContent = highScoreNumbers; // Use textContent to set the text of the new div
-  
     highScoreDiv.appendChild(highScoreDivNew);
     localStorage.setItem("high-score-content", highScoreNumbers); // Store the high score directly as a string
-  }
-  
-  // Function to load and display high score from localStorage
+}
+  // FUNCTION TO LOAD AND DISPLAY HIGH SCORE FROM LOCALSTORAGE
   function loadHighScore() {
     let highScoreDiv = document.getElementById("high-scores");
     let highScoreNumbers = localStorage.getItem("high-score-content"); // Retrieve the high score as a string
@@ -99,7 +83,6 @@ let shipPartCounter = 0
 let monsterCounter = 0
 dayTimer.innerHTML = `<p>You have taken ${dayCounter}/6 days!</p>`
 dayTimer.class = "save-timer"
-
 function saveDayTimer() {
     localStorage.setItem("dayCounter", dayTimer)
 }
@@ -108,7 +91,6 @@ function nextDayOverlayShow() {
         nextDayOverlay.style.display = "block"
     }
 }
-
 function nextDayOverlayHide(){
     if (nextDayOverlay.style.display = "block"){
         nextDayOverlay.style.display = "none"
@@ -156,10 +138,6 @@ function updateDayTimer() {
         hidePlayAgain()
     }
 }
-//PLAYER SELECTS ITEM, ITEM GETS ADDED TO ARRAY, IF PLAYER HAS 3 MONSTERS THEY LOSE, IF PLAYER HAS 3 SHIP PARTS, THEY WIN
-const imageArr = [
-    "image/armored-cannon-beetle.png", "image/emperor-bulblax.png", "image/red-1-pellet.png", "image/red-5-pellet.png", "image/small-bulborb.png", "image/yellow-wollywog.png", "image/shipparts/secret-safe.png", "image/shipparts/chronos-reactor.png", "image/shipparts/ionium-jet.png", "image/shipparts/main-engine.png", "image/shipparts/nova-blaster.png", "image/shipparts/radiation-canopy.png"
-]
 
 //PICTURE REQUIREMENT HANDLING CONDITIONS
 let imageRequirements = {
@@ -256,6 +234,12 @@ let imageRequirements = {
         }
     },
 }
+
+//ARRAY THE IMAGEITERATION FUNCTION PULLS FROM
+const imageArr = [
+    "image/armored-cannon-beetle.png", "image/emperor-bulblax.png", "image/red-1-pellet.png", "image/red-5-pellet.png", "image/small-bulborb.png", "image/yellow-wollywog.png", "image/shipparts/secret-safe.png", "image/shipparts/chronos-reactor.png", "image/shipparts/ionium-jet.png", "image/shipparts/main-engine.png", "image/shipparts/nova-blaster.png", "image/shipparts/radiation-canopy.png"
+]
+
 //ADDS IMAGE TO DIV FOR USER TO CLICK
 let tempImageArr = [...imageArr]
 if (tempImageArr)
@@ -273,15 +257,14 @@ function imageIteration(){
     }
 
     itemSelect.appendChild(imgTag)
+
     //CODE TO REMOVE AN ELEMENT SO IT'S NOT REPEATED ON A ROUND(DAY) IN ANOTHER DIV
     tempImageArr.splice(random, 1)
 
 }
 imageIteration()
 
-//HAVE TO ADD EVENTLISTENER BACK TO THE NEW IMAGE AFTER THE IMAGE CYCLES OUT
-
-//RANDOMIZED IMAGES IN THE DIV
+//RANDOMIZED IMAGES IN THE DIV EVENT LISTENER
 itemSelect.addEventListener("click", (e) => {
     if (e.target.tagName === "IMG"){
         let imageSrc = e.target.getAttribute('src');
