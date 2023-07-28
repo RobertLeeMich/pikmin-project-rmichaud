@@ -46,26 +46,22 @@ html {
 }
 
 .i1 { grid-area: i1; 
-    border: red solid 3px;
     color: white;
     font-weight: bold;
 }
 
 .i2 { grid-area: i2; 
-    border: red solid 3px;
     color: white;
     font-weight: bold;
 }
 
 .i3 { grid-area: i3; 
-    border: red solid 3px;
     color: white;
     font-weight: bold;
     z-index: 1001;
 }
 
 .i4 { grid-area: i4; 
-    border: red solid 3px;
     color: white;
     font-weight: bold;
     display: flex;
