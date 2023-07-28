@@ -15,8 +15,8 @@ const nextDayButton = document.getElementById("next-day-button")
 const dayTimer = document.getElementById("day-timer")
 const playAgainButton = document.getElementById("play-again-button")
 let highScoreDiv = document.getElementById("high-scores")
-const highScoreShowButton = document.getElementById("high-scores-show-button")
-const highScoreCloseButton = document.getElementById("high-scores-close-button")
+const highScoresShowButton = document.getElementById("high-scores-show-button")
+const highScoresCloseButton = document.getElementById("highscoresclosebutton") //I can't figure this out, for some reason removing the hyphens causes the button to work, from js html and css.
 
 // PIKMIN COUNTER/PIKMIN MANIPULATION
 let pikmin =  {
@@ -30,18 +30,18 @@ pikmin.render()
 
 //HIGH SCORE SHOW/CLOSE
 function openHighScores() {
-    highScoreDiv.style.display = "flex"
-    highScoreCloseButton.style.display = "block"
+    highScoreDiv.style.display = "block"
+    highScoresCloseButton.style.display = "block"
 }
 function closeHighScores(){
     highScoreDiv.style.display = "none"
-    highScoreCloseButton.style.display = "none"
+    highScoresCloseButton.style.display = "none"
 }
-highScoreShowButton.addEventListener("click", (e) => {
+highScoresShowButton.addEventListener("click", (e) => {
     loadHighScore()
     openHighScores()
 })
-highScoreCloseButton.addEventListener("click", (e) => {
+highScoresCloseButton.addEventListener("click", (e) => {
     closeHighScores()
 })
 
