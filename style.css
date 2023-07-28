@@ -95,7 +95,7 @@ left: 0%;
 right: 0;
 bottom: 0%;
 background-color: rgba(255, 255, 255, 0.4);
-z-index: 999;
+z-index: 5;
 }
 
 /* #play-again-button {
@@ -109,4 +109,30 @@ z-index: 999;
         top: 50%;
     }
 
+#high-scores {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    z-index: 5;
+}
 
+#high-scores-show-button{
+    display: block;
+    position: absolute;
+    left: 87%;
+    top: 10%;
+}
+
+#high-scores-close-button{
+    display: none;
+    position: absolute;
+    left: 40%;
+    top: 90%;
+    z-index: 6;
+}
+
+.div-image{
+    width: 5em;
+}
