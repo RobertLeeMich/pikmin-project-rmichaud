@@ -247,7 +247,7 @@ function imageIteration(){
     const random = Math.floor(Math.random() * tempImageArr.length)
     const imgTag = document.createElement(`img`)
     imgTag.setAttribute("src", tempImageArr[random]) 
-    //(temp)ImageArr[random]  ENDS UP RETURNING A STRING BECAUSE THE ARRAY ITEM IS A STRING, SO IT'S A VALUD ARG FOR setAttribute()
+    //(temp)ImageArr[random]  ENDS UP RETURNING A STRING BECAUSE THE ARRAY ITEM IS A STRING, SO IT'S A VALID ARG FOR setAttribute()
     imgTag.setAttribute("class", "div-image") 
 
     //REMOVE OLD IMAGE

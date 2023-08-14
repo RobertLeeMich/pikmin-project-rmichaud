@@ -32,15 +32,15 @@ html {
     grid-template-columns:repeat(9, 1fr); 
     grid-template-rows:repeat(9, 1fr); 
     grid-template-areas: 
-        ". . . . . . . i4 i4"
-        ". . . . . . . i4 i4"
+        ". . . i6 . . . i4 i4"
+        ". . . i6 . . . i4 i4"
         ". . . . . . . . ."
         ". . . i5 i5 i5 . i2 ."
         ". . i1 i5 i5 i5 . i2 ."
         ". . i1 i5 i5 i5 . . ."
         ". . . i5 i5 i5 . . ."
-        ". . . . . . . . ."
-        ". . . . . i3 . . ."; 
+        ". i7 . . . . . . ."
+        ". i7 . . . i3 . . ."; 
     height: 100vh;
     width: 100vw;
 }
@@ -73,6 +73,22 @@ html {
     font-weight: bold;
     display: flex;
 } */
+
+.i6 {
+    grid-area: i6;
+    border: red solid 3px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+}
+
+.i7 {
+    grid-area: i7;
+    border: red solid 3px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+}
 
 #olimar {
     width: 4em;
