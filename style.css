@@ -34,8 +34,8 @@ html {
     grid-template-areas: 
         ". . . i6 . . . i4 i4"
         ". . . i6 . . . i4 i4"
-        ". . . . . . . . ."
-        ". . . i5 i5 i5 . i2 ."
+        "i8 . . . . . . . ."
+        "i8 . . i5 i5 i5 . i2 ."
         ". . i1 i5 i5 i5 . i2 ."
         ". . i1 i5 i5 i5 . . ."
         ". . . i5 i5 i5 . . ."
@@ -45,7 +45,9 @@ html {
     width: 100vw;
 }
 
-.i1 { grid-area: i1; 
+.i1 { 
+    position: relative;
+    grid-area: i1; 
     color: white;
     font-weight: bold;
 }
@@ -75,6 +77,7 @@ html {
 } */
 
 .i6 {
+    position: relative;
     grid-area: i6;
     border: red solid 3px;
     color: white;
@@ -83,6 +86,7 @@ html {
 }
 
 .i7 {
+    position: relative;
     grid-area: i7;
     border: red solid 3px;
     color: white;
@@ -90,12 +94,86 @@ html {
     display: flex;
 }
 
+.i8 {
+    position: relative;
+    grid-area: i8;
+    border: red solid 3px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    pointer-events: none;
+
+}
+
+.red-bg{
+    background-image: linear-gradient(to left top, #ff0000, #e90001, #d40002, #bf0002, #aa0002, #97000b, #830010, #6f0012, #550616, #3b0b15, #230a0f, #000000);
+    box-shadow: none;
+    transition: box-shadow 1s ease-in-out;
+}
+
+.red-bg:hover{
+    box-shadow: 2px 2px 27px 33px rgba(255,0,15,0.75);
+    -webkit-box-shadow: 2px 2px 27px 33px rgba(255,0,15,0.75);
+    -moz-box-shadow: 2px 2px 27px 33px rgba(255,0,15,0.75);
+}
+
+
+
+.yellow-bg{
+    background-image: linear-gradient(to left top, #ecff00, #dae900, #c7d400, #b5bf00, #a3aa00, #9e8f00, #947608, #865e10, #713f1c, #51281e, #2d1718, #000000);
+    box-shadow: none;
+    transition: box-shadow 1s ease-in-out;
+
+}
+
+.yellow-bg:hover{
+    box-shadow: 2px 2px 27px 33px rgba(255,245,0,0.75);
+    -webkit-box-shadow: 2px 2px 27px 33px rgba(255,245,0,0.75);
+    -moz-box-shadow: 2px 2px 27px 33px rgba(255,245,0,0.75);
+}
+
+.blue-bg{
+    background-image: linear-gradient(to left top, #0c00ff, #0504e9, #0207d4, #0008bf, #0009aa, #33008d, #3d0073, #3e005b, #3b003c, #2f0324, #1f0212, #000000);
+    box-shadow: none;
+    transition: box-shadow 1s ease-in-out;
+
+}
+
+.blue-bg:hover{
+    box-shadow: 2px 2px 27px 33px rgba(36,0,255,0.75);
+    -webkit-box-shadow: 2px 2px 27px 33px rgba(36,0,255,0.75);
+    -moz-box-shadow: 2px 2px 27px 33px rgba(36,0,255,0.75);
+}
+
+@keyframes shadow {
+    from {
+      box-shadow: 0 0 10px -10px #aef4af;
+    }
+    to {
+      box-shadow: 0 0 10px 10px #aef4af;
+    }
+  }
+
+
+
 #olimar {
     width: 4em;
 }
 
 #ssdolphin{
     width: 3em;
+}
+
+#red-pikmin{
+    color: red;
+}
+
+#yellow-pikmin{
+    color: yellow;
+}
+
+#blue-pikmin{
+    color: rgb(89, 86, 255);
 }
 
 #next-day-overlay{
@@ -133,7 +211,7 @@ z-index: 5;
     display: block;
     position: absolute;
     left: 87%;
-    top: 10%;
+    top: 20%;
 }
 
 #highscoresclosebutton{
@@ -145,3 +223,15 @@ z-index: 5;
 .div-image{
     width: 5em;
 }
+
+  .unclickable-no::before {
+    content: "";
+    position: absolute;
+    width: 100%; /* Adjust the width and height to fit the div */
+    height: 100%;
+    background: url('./image/no-symbol.png') center no-repeat; /* Set the image path */
+    background-size: contain; /* Resize the image to fit the div */
+    opacity: 1; /* Adjust the opacity if needed */
+    pointer-events: none; /* IMPORTANT: IGNORES CLICKS ON THE OVERLAY*/
+  }
+  
